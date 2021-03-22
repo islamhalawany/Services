@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Home from './pages'
+import signinPage from './pages/signin'
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Sidebar from './components/Sidebar'
+import signUp from './pages/signUp';
 
-function App() {
+function App({isOpen, toggle}) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <Sidebar isOpen={isOpen} toggle={toggle}/>
+    <Navbar toggle={toggle}/>
+      <Switch>
+        <Route path="/" component={Home} exact= {true} />
+        <Route path="/signin" component={signinPage} exact= {true} />
+        <Route path="/signup" component={signUp} exact = {true} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
